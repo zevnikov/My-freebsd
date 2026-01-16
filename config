@@ -1,0 +1,113 @@
+{
+    "layer": "top",
+    "position": "top",
+    "output": "HDMI-A-1",
+    "height": 48,
+    "spacing": 18, 
+
+    "modules-left": [
+        "hyprland/workspaces",
+        "cpu",
+        "memory",
+        "custom/temperature",
+        "hyprland/window"
+    ],
+
+    "modules-center": [],
+
+    "modules-right": [
+        "custom/inbox",
+        "custom/network",
+        "custom/audio", 
+        "custom/weather",
+        "clock",
+        "tray"
+    ],
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false,
+        "format": "{name}",
+        "persistent-workspaces": {
+            "HDMI-A-1": [ 1, 2, 3, 4, 5 ]
+        }
+    },
+
+    "hyprland/window": {
+        "max-length": 50,
+        "separate-outputs": true
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "{usage}% ",
+        "tooltip": true 
+    },
+
+    "memory": {
+        "format": "{}% ",
+        "tooltip": true
+    },
+
+    "custom/temperature": {
+        "exec": "sysctl -n dev.cpu.0.temperature | tr -d 'C'",
+        "format": "{}°C ",
+        "interval": 3,
+        "tooltip": false
+    },
+
+    "custom/inbox": {
+        "format": " 📥 INBOX ",
+        "tooltip": false,
+        "on-click": "thunar /mnt/media/dokumenti"
+    },
+
+    /* --- POPRAVLJEN AUDIO (Brez pkill napak) --- */
+    "custom/audio": {
+        "exec": "pamixer --get-mute | grep -q 'true' && echo '🔇' || echo \"$(pamixer --get-volume)% 🔊\"",
+        // Osvežujemo vsako sekundo, zato ne rabimo signala
+        "interval": 1, 
+        "tooltip": false,
+        "on-click": "pamixer -t",
+        "on-scroll-up": "pamixer -i 5",
+        "on-scroll-down": "pamixer -d 5"
+    },
+
+    "custom/network": {
+        "exec": "ifconfig | grep -qE 'status: (active|associated)' && echo 'ONLINE ' || echo 'OFFLINE ⚠'",
+        "interval": 5,
+        "format": "{}",
+        "tooltip": false
+    },
+
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "curl -s 'wttr.in/Kranj?format=1'",
+        "return-type": ""
+    },
+
+    "clock": {
+        "locale": "sl_SI.UTF-8",
+        "format": "{:%A, %d.%m.  %H:%M}",
+        "tooltip-format": "<span font='JetBrainsMono Nerd Font Mono 22'>{calendar}</span>",
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "",
+            "on-scroll": 1,
+            "format": {
+                "months":   "<span color='#ffead3'><b>{}</b></span>",
+                "days":     "<span color='#ffffff'><b>{}</b></span>",
+                "weekdays": "<span color='#89b4fa'><b>{}</b></span>",
+                "today":    "<span color='#ff0000'><b><u>{}</u></b></span>"
+            }
+        },
+        "on-click": "gsimplecal"
+    },
+
+    "tray": {
+        "spacing": 12
+    }
+}

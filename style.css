@@ -1,0 +1,77 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+    font-size: 15px; 
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(26, 26, 26, 0.95);
+    color: #ffffff;
+    border-bottom: 2px solid rgba(100, 100, 100, 0.5);
+}
+
+/* --- OBLAČEK --- */
+tooltip {
+    background: #0f1c2e;       
+    border: 3px solid #89b4fa;
+    border-radius: 12px;
+}
+tooltip label {
+    color: #ffffff;
+    padding: 25px; 
+}
+/* ---------------- */
+
+#workspaces button {
+    padding: 0 10px;
+    background: transparent;
+    color: #ffffff;
+    border-top: 3px solid transparent;
+}
+#workspaces button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+#workspaces button.active {
+    color: #89b4fa;
+    border-top: 3px solid #89b4fa;
+}
+
+/* Moduli */
+#clock, #cpu, #memory, #custom-audio, /* TUKAJ JE SPREMEMBA */
+#custom-weather, #tray, #mpris, 
+#custom-network, #custom-inbox, #custom-temperature {
+    padding: 0 16px;
+    margin: 6px 6px;
+    color: #ffffff;
+    background-color: rgba(62, 62, 62, 0.6);
+    border-radius: 6px;
+}
+
+#window {
+    padding: 0 12px;
+    color: #ffffff;
+    background-color: transparent;
+}
+
+/* Barve */
+#clock { background-color: #89b4fa; color: #1e1e2e; }
+#custom-weather { color: #f9e2af; }
+#custom-audio { color: #fab387; } /* Oranžna barva za audio */
+#cpu { color: #89dceb; }
+#memory { color: #cba6f7; }
+#custom-temperature { color: #a6e3a1; }
+#tray { background-color: #2980b9; }
+
+#custom-network {
+    background-color: #262626;
+    color: #a6e3a1;
+    border: 1px solid #a6e3a1;
+}
+
+#custom-inbox {
+    background-color: #45475a;
+    color: #ffffff;
+}
